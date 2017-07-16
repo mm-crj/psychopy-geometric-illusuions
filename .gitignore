@@ -1,5 +1,5 @@
 data/
 wiki/
-!programs/*.py
+programs/*.csv
 programs/1key_try.py
 programs/key_try.py
