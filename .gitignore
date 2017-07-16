@@ -2,4 +2,4 @@ data/
 wiki/
 programs/1key_try.py
 programs/key_try.py
-programs/*.csv
+!programs/*.py
