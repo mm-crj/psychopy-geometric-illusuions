@@ -15,7 +15,7 @@ from random import randint, shuffle
 s=80.0
 
 #value in the rating scale
-rate1=rate=0.0
+rate1=rate=rate2=0.0
 
 #range of the rating scale
 range=10.0
@@ -55,7 +55,7 @@ file.write("%s,%s,%s,%s,%s\n" %(expInfo['subject'],expInfo['gender'],expInfo['ag
 win = visual.Window(
 	    size=[800, 800],
 	    units="pix",
-	    fullscr=1,
+	    fullscr=0,
 	    color=[1, 1, 1],
 	    monitor="testMonitor",
 	    allowGUI=1
