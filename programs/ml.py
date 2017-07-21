@@ -3,13 +3,19 @@ import time
 from psychopy import core, visual, gui, data, event
 from psychopy.tools.filetools import fromFile, toFile
 from random import randint, shuffle
-#from numpy import random
+from psychopy.iohub import launchHubServer, EventConstants
 
+# By default, ioHub will create Keyboard and Mouse devices and
+# start monitoring for any events from these devices only.      
+io=launchHubServer(psychopy_monitor_name='testMonitor')
 
 
 #user values
 #image location
 #im= '../images/ml/tests/exp/ml_exp_15.png'
+
+keyboard=io.devices.keyboard
+increment = 0 # initial value of scaling factor
 
 #range of the reference line 
 s=80.0
@@ -28,20 +34,20 @@ files= os.listdir(loc)
 shuffle(files)
 
 try:#try to get a previous parameters file
-    expInfo = fromFile('lastParams.pickle')
+	expInfo = fromFile('lastParams.pickle')
 except:#if not there then use a default set
-    expInfo = {
-    'subject':'jwp',
-    'gender':'M', 
-    'age':0,
-    'hand_pref':'R'
-    }
+	expInfo = {
+	'subject':'jwp',
+	'gender':'M', 
+	'age':0,
+	'hand_pref':'R'
+	}
 
 dateStr=time.strftime("%d-%m-%Y-%R-%s")
 #present a dialogue to change params
 dlg = gui.DlgFromDict(expInfo, title='Psychophysical Experiments', fixed=['dateStr'])
 if dlg.OK:
-    toFile('lastParams.pickle', expInfo)#save params to file for next time
+	toFile('lastParams.pickle', expInfo)#save params to file for next time
 else:
 	pass
 
@@ -53,13 +59,13 @@ file.write("%s,%s,%s,%s,%s\n" %(expInfo['subject'],expInfo['gender'],expInfo['ag
 	expInfo['hand_pref'],dateStr))
 
 win = visual.Window(
-	    size=[800, 800],
-	    units="pix",
-	    fullscr=0,
-	    color=[1, 1, 1],
-	    monitor="testMonitor",
-	    allowGUI=1
-	    )
+		size=[800, 800],
+		units="pix",
+		fullscr=0,
+		color=[1, 1, 1],
+		monitor="testMonitor",
+		allowGUI=1
+		)
 
 
 
@@ -85,17 +91,27 @@ for im in files:
 		img.draw()
 		ratingScale.draw()
 		rate=ratingScale.getRating()
-		#r1=visual.Line(win=win,start=(77,-10),end=(77,200),lineColor='black',lineWidth=3)
-		#r2=visual.Line(win=win,start=(-99,-10),end=(-99,200),lineColor='black',lineWidth=3)
+		for event_io in keyboard.getEvents():
+			if event_io.type == EventConstants.KEYBOARD_PRESS:
+				if event_io.key == u'right':
+					increment = 0.01 # move one step to the right
+				elif event_io.key == u'left':
+					increment = -0.01 # move one step to the left
 
-		if  rate!=rate1:
+			if event_io.type == EventConstants.KEYBOARD_RELEASE:
+				increment = 0 # stop changing position
+
+		
+		ratingScale.markerPlacedAt += increment
+	
+		print ratingScale.markerPlacedAt,rate
+		if rate!=rate1:
 			refline=visual.Line(win=win,start=(-99-((2.0*(rate-1.0)
 				/(range-1))-1)*(s/2.0),-100),end=(77+((2.0*(rate-1.0)
 				/(range-1))-1)*(s/2.0),-100
 				),lineColor='black',lineWidth=3)
+		
 		refline.draw()
-		#r1.draw()
-		#r2.draw()
 		win.flip()
 		rate1=rate
 
