@@ -61,7 +61,7 @@ file.write("%s,%s,%s,%s,%s\n" %(expInfo['subject'],expInfo['gender'],expInfo['ag
 win = visual.Window(
 		size=[800, 800],
 		units="pix",
-		fullscr=0,
+		fullscr=1,
 		color=[1, 1, 1],
 		monitor="testMonitor",
 		allowGUI=1
@@ -114,6 +114,22 @@ for im in files:
 		refline.draw()
 		win.flip()
 		rate1=rate
+		#for prematurely closing program with 'q'
+		if event.getKeys(['q']):
+			win.close()
+			io.quit()
+			core.quit()
+			file.close()
+			#pause
+		if event.getKeys(['escape']):
+			win.winHandle.minimize() # minimise the PsychoPy window
+			win.winHandle.set_fullscreen(False) # disable fullscreen
+			win.flip() # redraw the (minimised) window
+			raw_input("PAUSED!! Press Enter to continue experiment...")
+			win.winHandle.maximize()
+			win.winHandle.set_fullscreen(True) 
+			win.winHandle.activate()
+			win.flip()
 
 
 	#disparity
