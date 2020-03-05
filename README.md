@@ -3,7 +3,7 @@ This is a repo for developing a python module for conducting psychophysical expe
 
 ## To do list
 [] Track all the used libraries and update the requitements.  
-[] Find a suitable freezing package for 1-click excecutable creation.  
+[x] Find a suitable freezing package for 1-click excecutable creation. Probably can use  [PyInstaller](https://www.pyinstaller.org/) as suggested [here](https://hackernoon.com/the-one-stop-guide-to-easy-cross-platform-python-freezing-part-1-c53e66556a0a)
 [] Test the v0.1 executable for windows.
 
 ## Installation
