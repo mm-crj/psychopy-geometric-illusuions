@@ -1,5 +1,5 @@
 # psychopy-geometric-illusions
-This is a repo for developing a python module for conducting psychophysical experiments, to measure the intensity of 2-d geometric visual illusions. The goal is to develop a system indepent binarys so that people can easily set up the experiment themselves.   
+This is a repo for developing a python module for conducting psychophysical experiments, to measure the intensity of 2-d geometric visual illusions. The goal is to develop a system indepent binaries so that people can easily set up the experiment themselves.   
 This repo will only contain the finished executables and other experimental details, follow the developement of the underlying geom_illusion_2d python package or creation of the binaries [here](https://github.com/mm-crj/geom_illusion_2d).
 
 ## To do list
