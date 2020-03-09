@@ -3,10 +3,10 @@ This is a repo for developing a python module for conducting psychophysical expe
 This repo will only contain the finished executables and other experimental details, follow the developement of the underlying geom_illusion_2d python package or creation of the binaries [here](https://github.com/mm-crj/geom_illusion_2d).
 
 ## To do list
-- [] Track all the used libraries and update the requirements.   
-- [] create and upload the whole python package to PyPi.   
+- [ ] Track all the used libraries and update the requirements.   
+- [ ] create and upload the whole python package to PyPi.   
 - [x] Find a suitable freezing package for 1-click excecutable creation. Probably can use  [PyInstaller](https://www.pyinstaller.org/) as suggested [here](https://hackernoon.com/the-one-stop-guide-to-easy-cross-platform-python-freezing-part-1-c53e66556a0a)  
-- [] Test the v0.1 executable for windows.
+- [ ] Test the v0.1 executable for windows.
 
 ## Installation
 The support for 1-click executables with come in the order mentioned below.   
